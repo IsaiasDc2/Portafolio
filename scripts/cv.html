@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Isaias Duran · CV</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #1a1a1f;
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        font-size: 9.1pt;
+        line-height: 1.45;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        padding: 13mm 16mm 11mm;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .top {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 10mm;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        font-size: 29pt;
+        line-height: 1;
+        letter-spacing: -0.035em;
+        font-weight: 700;
+      }
+
+      .role {
+        margin: 2.6mm 0 0;
+        font-size: 11.5pt;
+        font-weight: 600;
+        color: #c2410c;
+      }
+
+      .contact {
+        margin-top: 2.6mm;
+        font-size: 8.6pt;
+        color: #5b5b66;
+      }
+
+      .contact span {
+        white-space: nowrap;
+      }
+
+      .contact .sep {
+        margin: 0 1.6mm;
+        color: #c9c2b8;
+      }
+
+      .stamp {
+        flex: none;
+        padding-bottom: 1mm;
+        text-align: right;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 7.4pt;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #5b5b66;
+      }
+
+      .stamp strong {
+        display: block;
+        color: #1a1a1f;
+        font-size: 8.2pt;
+        font-weight: 600;
+      }
+
+      .rule {
+        height: 2.2pt;
+        margin: 4.6mm 0 5mm;
+        background: linear-gradient(to right, #c2410c 0 34mm, #e7e2da 34mm 100%);
+      }
+
+      h2 {
+        margin: 0 0 2.2mm;
+        font-size: 7.6pt;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #c2410c;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      section {
+        margin-bottom: 5.2mm;
+      }
+
+      .profile {
+        max-width: 172mm;
+        color: #3c3c44;
+      }
+
+      .project {
+        margin-bottom: 4.2mm;
+        break-inside: avoid;
+      }
+
+      .project:last-child {
+        margin-bottom: 0;
+      }
+
+      .project-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 4mm;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 10.4pt;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .year {
+        flex: none;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 7.4pt;
+        color: #5b5b66;
+      }
+
+      .meta {
+        margin-top: 0.6mm;
+        font-size: 8.1pt;
+        color: #5b5b66;
+      }
+
+      .stack-line {
+        margin-top: 1.2mm;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 7.4pt;
+        color: #5b5b66;
+      }
+
+      ul {
+        margin: 1.4mm 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        position: relative;
+        margin-bottom: 0.9mm;
+        padding-left: 3.6mm;
+        color: #3c3c44;
+      }
+
+      li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1.7mm;
+        width: 1.3mm;
+        height: 1.3mm;
+        background: #c2410c;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.4mm 7mm;
+        padding-top: 0.6mm;
+      }
+
+      .skill-group h4 {
+        margin: 0 0 0.6mm;
+        font-size: 8.2pt;
+        font-weight: 700;
+      }
+
+      .skill-group p {
+        font-size: 8.2pt;
+        line-height: 1.4;
+        color: #5b5b66;
+      }
+
+      .practices {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.4mm 7mm;
+        padding-top: 0.6mm;
+      }
+
+      .practices h4 {
+        margin: 0 0 0.6mm;
+        font-size: 8.4pt;
+        font-weight: 700;
+      }
+
+      .practices p {
+        font-size: 8.2pt;
+        line-height: 1.42;
+        color: #5b5b66;
+      }
+
+      .bottom {
+        display: grid;
+        grid-template-columns: 1.45fr 0.72fr 0.83fr;
+        gap: 8mm;
+        margin-top: auto;
+        padding-top: 3.2mm;
+        border-top: 1px solid #e7e2da;
+      }
+
+      .bottom h2 {
+        margin-bottom: 1.6mm;
+      }
+
+      .bottom p {
+        font-size: 8.2pt;
+        line-height: 1.45;
+        color: #5b5b66;
+      }
+
+      .bottom strong {
+        color: #1a1a1f;
+        font-weight: 600;
+      }
+
+      .note {
+        margin-top: 2.4mm;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 7.2pt;
+        color: #8a857d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="top">
+          <div>
+            <h1>Isaias Duran</h1>
+            <p class="role">Desarrollador Full Stack Junior</p>
+            <p class="contact">
+              <span>isaduran644@gmail.com</span>
+              <span class="sep">·</span>
+              <span>github.com/IsaiasDc2</span>
+              <span class="sep">·</span>
+              <span>Argentina · Remoto</span>
+            </p>
+          </div>
+          <div class="stamp">
+            <strong>Disponible</strong>
+            Full time · Remoto o híbrido
+          </div>
+        </div>
+        <div class="rule"></div>
+      </header>
+
+      <section class="profile">
+        <h2>Perfil</h2>
+        <p>
+          Desarrollador full stack junior con base técnica en informática.
+          Construí una tienda online en equipo y un punto de venta multi-sucursal
+          propio. Trabajo con TypeScript, React, Next.js y PostgreSQL. Me importa
+          el código que se puede explicar y los flujos que no obligan a adivinar.
+        </p>
+      </section>
+
+      <section>
+        <h2>Proyectos</h2>
+
+        <div class="project">
+          <div class="project-head">
+            <h3>HefestoTech · Tienda de hardware y gaming</h3>
+            <span class="year">2026</span>
+          </div>
+          <p class="meta">
+            Práctica Profesionalizante II · Equipo de 4 · Demo pública
+          </p>
+          <p class="stack-line">
+            React 19 · Vite · TypeScript · Supabase · FastAPI · Mercado Pago · Gemini
+          </p>
+          <ul>
+            <li>
+              Frontend completo: catálogo con filtros, armador de PC con
+              compatibilidad, carrito, cuenta y panel de administración.
+            </li>
+            <li>
+              Checkout con Mercado Pago y webhook idempotente, tema claro/oscuro,
+              traducción ES/EN e interfaz del asistente de IA.
+            </li>
+            <li>
+              69 productos y 16 categorías en el catálogo demo. Pruebas con Vitest
+              y CI con lint, tests, build y pytest.
+            </li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-head">
+            <h3>POS Multi-Sucursal · Mueblería</h3>
+            <span class="year">2026</span>
+          </div>
+          <p class="meta">
+            Proyecto personal · Repositorio privado, demo en entrevista
+          </p>
+          <p class="stack-line">
+            Next.js 16 · TypeScript · Server Actions · Zod · Drizzle ORM · PostgreSQL · RLS
+          </p>
+          <ul>
+            <li>
+              Pedidos con seña y saldo, caja diaria, stock por sucursal, entregas,
+              reportes y facturación electrónica.
+            </li>
+            <li>
+              Permisos por rol y RLS en PostgreSQL, sesiones con vencimiento por
+              inactividad y migraciones versionadas.
+            </li>
+            <li>
+              3 sucursales, 30 productos y 6 usuarios demo. 9 pruebas de RLS, 9 ADRs
+              y suite con Vitest, PGlite y Playwright.
+            </li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-head">
+            <h3>Forja Gym · Sitio de gimnasio</h3>
+            <span class="year">2026</span>
+          </div>
+          <p class="meta">10 entregas de cursada · Demo estática y repositorio públicos</p>
+          <p class="stack-line">
+            HTML · CSS · Bootstrap · JavaScript · PHP · MySQL · Laravel
+          </p>
+          <ul>
+            <li>
+              Planes, clases, instructores y contacto, construido en diez entregas:
+              HTML y Bootstrap, después JavaScript, PHP/MySQL y Laravel con MVC.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Stack</h2>
+        <div class="skills">
+          <div class="skill-group">
+            <h4>Lenguajes</h4>
+            <p>TypeScript, JavaScript, Python, PHP, SQL, HTML, CSS</p>
+          </div>
+          <div class="skill-group">
+            <h4>Frontend</h4>
+            <p>React, Next.js, Vite, React Router, Tailwind CSS, Zustand, Motion, Radix UI</p>
+          </div>
+          <div class="skill-group">
+            <h4>Backend</h4>
+            <p>Node.js, FastAPI, Server Actions, REST, Zod, Supabase Auth</p>
+          </div>
+          <div class="skill-group">
+            <h4>Bases de datos</h4>
+            <p>PostgreSQL, Supabase, Drizzle ORM, MySQL, PGlite</p>
+          </div>
+          <div class="skill-group">
+            <h4>Integraciones</h4>
+            <p>Mercado Pago, ARCA WSFEv1, Gemini, Supabase Storage, GitHub Actions</p>
+          </div>
+          <div class="skill-group">
+            <h4>Herramientas</h4>
+            <p>Git, Vitest, Playwright, pytest, Docker, Vercel, Render, ESLint, Prettier</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Prácticas de trabajo</h2>
+        <div class="practices">
+          <div>
+            <h4>Código verificable</h4>
+            <p>TypeScript estricto, Zod en los bordes del sistema y ESLint con Prettier.</p>
+          </div>
+          <div>
+            <h4>Pruebas y CI</h4>
+            <p>Vitest, PGlite y Playwright. GitHub Actions en cada push.</p>
+          </div>
+          <div>
+            <h4>Decisiones documentadas</h4>
+            <p>9 ADRs y migraciones versionadas en el POS multi-sucursal.</p>
+          </div>
+          <div>
+            <h4>Trabajo en equipo</h4>
+            <p>Entregas semanales, revisión de código y documentación en HefestoTech.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="bottom">
+        <div>
+          <h2>Formación</h2>
+          <p>
+            <strong>Técnico en Informática Profesional y Personal</strong><br />
+            Formación técnica · Argentina<br />
+            Base en programación, bases de datos, redes y sistemas.
+          </p>
+        </div>
+        <div>
+          <h2>Idiomas</h2>
+          <p>
+            <strong>Español</strong> · Nativo<br />
+            <strong>Inglés</strong> · Técnico
+          </p>
+        </div>
+        <div>
+          <h2>Enlaces</h2>
+          <p>
+            <strong>hefestotech.vercel.app</strong><br />
+            github.com/IsaiasDc2<br />
+            isaduran644@gmail.com
+          </p>
+        </div>
+      </div>
+
+      <p class="note">Actualizado en noviembre de 2026</p>
+    </div>
+  </body>
+</html>
