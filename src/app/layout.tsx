@@ -97,11 +97,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  colorScheme: "dark light",
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0B0B0F" },
-    { media: "(prefers-color-scheme: light)", color: "#FAF7F2" },
-  ],
+  colorScheme: "light",
+  themeColor: { media: "(prefers-color-scheme: light)", color: "#FAF7F2" },
 };
 
 const themeScript = `(function(){try{document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light";}catch(e){document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light";}try{var l=localStorage.getItem("locale");if(l==="es"||l==="en"){document.documentElement.lang=l;}}catch(e){}})();`;
