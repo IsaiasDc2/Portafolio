@@ -104,7 +104,7 @@ export const viewport: Viewport = {
   ],
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;var l=localStorage.getItem("locale");if(l==="es"||l==="en"){document.documentElement.lang=l;}}catch(e){document.documentElement.dataset.theme="dark";document.documentElement.style.colorScheme="dark";}})();`;
+const themeScript = `(function(){try{document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light";}catch(e){document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light";}try{var l=localStorage.getItem("locale");if(l==="es"||l==="en"){document.documentElement.lang=l;}}catch(e){}})();`;
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -146,7 +146,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      data-theme="dark"
+      data-theme="light"
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetBrainsMono.variable}`}
     >

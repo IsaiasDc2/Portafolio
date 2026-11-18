@@ -8,7 +8,7 @@ import { copy, site } from "@/data/site";
 import { cn, withBasePath } from "@/lib/utils";
 import { LanguageToggle } from "./LanguageToggle";
 import { Logo } from "./Logo";
-import { ThemeToggle } from "./ThemeToggle";
+
 import { useLocale } from "./Providers";
 
 const sectionIds = [
@@ -128,7 +128,6 @@ export function Navbar() {
             <span className="hidden xl:inline">{copy.nav.cv[locale]}</span>
             <span className="xl:hidden">CV</span>
           </a>
-          <ThemeToggle />
           <Dialog.Root open={menuOpen} onOpenChange={setMenuOpen}>
             <Dialog.Trigger asChild>
               <button

@@ -35,11 +35,11 @@ function subscribeTheme(callback: () => void) {
 }
 
 function getThemeSnapshot(): Theme {
-  return document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  return "light";
 }
 
 function getThemeServerSnapshot(): Theme {
-  return "dark";
+  return "light";
 }
 
 function subscribeLocale(callback: () => void) {
@@ -88,16 +88,7 @@ export function Providers({ children }: { children: ReactNode }) {
   );
 
   const toggleTheme = useCallback(() => {
-    const next: Theme =
-      document.documentElement.dataset.theme === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = next;
-    document.documentElement.style.colorScheme = next;
-    try {
-      window.localStorage.setItem("theme", next);
-    } catch {
-      // Storage can be unavailable in private mode. The theme still changes.
-    }
-    window.dispatchEvent(new Event(THEME_EVENT));
+    // Solo se usa el tema claro.
   }, []);
 
   const setLocale = useCallback((next: Locale) => {
