@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const repoName = "NOMBRE-DE-TU-REPOSITORIO";
+const repoName = "Portafolio";
 
 const nextConfig: NextConfig = {
   // Generar una versión estática para GitHub Pages

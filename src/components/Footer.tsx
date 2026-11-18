@@ -7,6 +7,7 @@ import {
   GithubLogo,
 } from "@phosphor-icons/react";
 import { copy, site } from "@/data/site";
+import { withBasePath } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { useLocale } from "./Providers";
 
@@ -83,7 +84,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={site.cv}
+                  href={withBasePath(site.cv)}
                   download
                   className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-text"
                 >

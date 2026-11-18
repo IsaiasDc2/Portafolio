@@ -5,7 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
 import { ArrowUpRight, DownloadSimple, List, X } from "@phosphor-icons/react";
 import { copy, site } from "@/data/site";
-import { cn } from "@/lib/utils";
+import { cn, withBasePath } from "@/lib/utils";
 import { LanguageToggle } from "./LanguageToggle";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
@@ -120,7 +120,7 @@ export function Navbar() {
         <div className="flex items-center gap-1 sm:gap-2">
           <LanguageToggle className="hidden sm:inline-flex" />
           <a
-            href={site.cv}
+            href={withBasePath(site.cv)}
             download
             className="btn btn-secondary hidden h-10 px-3 text-sm md:inline-flex"
           >
@@ -206,7 +206,7 @@ export function Navbar() {
                       <div className="mt-auto flex flex-col gap-4 pt-8">
                         <LanguageToggle />
                         <a
-                          href={site.cv}
+                          href={withBasePath(site.cv)}
                           download
                           onClick={() => setMenuOpen(false)}
                           className="btn btn-primary w-full"

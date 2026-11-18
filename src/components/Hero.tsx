@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useReducedMotionSafe } from "@/lib/use-reduced-motion";
+import { withBasePath } from "@/lib/utils";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -112,7 +113,7 @@ export function Hero() {
               {copy.hero.ctaContact[locale]}
             </a>
             <a
-              href={site.cv}
+              href={withBasePath(site.cv)}
               download
               className="btn btn-ghost px-3"
               aria-label={copy.hero.cv[locale]}

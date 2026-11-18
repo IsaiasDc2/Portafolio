@@ -8,7 +8,7 @@ import {
 } from "@phosphor-icons/react";
 import { copy, site } from "@/data/site";
 import { timeline, type TimelineItem } from "@/data/education";
-import { cn } from "@/lib/utils";
+import { cn, withBasePath } from "@/lib/utils";
 import { useLocale } from "./Providers";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
@@ -87,7 +87,7 @@ export function Education() {
                   : "One page with education, stack and projects, ready to download or print."}
               </p>
               <a
-                href={site.cv}
+                href={withBasePath(site.cv)}
                 download
                 className="btn btn-secondary mt-4 w-full"
               >

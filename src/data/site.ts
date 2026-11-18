@@ -20,7 +20,7 @@ export const site = {
   } satisfies L10n,
   cv: "/cv.pdf",
   year: "2026",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaiasduran.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaiasdc2.github.io/Portafolio",
 };
 
 export const copy = {
