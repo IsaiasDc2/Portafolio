@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion } from "motion/react";
@@ -12,6 +12,7 @@ import {
 } from "@phosphor-icons/react";
 import { copy } from "@/data/site";
 import type { FeaturedProject } from "@/data/types";
+import { withBasePath } from "@/lib/utils";
 import { ProjectLinks } from "./ProjectLinks";
 import { useLocale } from "./Providers";
 
@@ -40,10 +41,12 @@ export function ProjectModal({
   project,
   open,
   onOpenChange,
+  returnFocusRef,
 }: {
   project: FeaturedProject;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }) {
   const { locale } = useLocale();
   const c = project.caseStudy;
@@ -55,14 +58,21 @@ export function ProjectModal({
           <Dialog.Portal forceMount>
             <Dialog.Overlay asChild forceMount>
               <motion.div
-                className="fixed inset-0 z-[60] bg-[rgba(5,5,8,0.78)] backdrop-blur-md"
+                className="fixed inset-0 z-[60] bg-[rgba(23,20,15,0.6)] backdrop-blur-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               />
             </Dialog.Overlay>
-            <Dialog.Content asChild forceMount>
+            <Dialog.Content
+              asChild
+              forceMount
+              onCloseAutoFocus={(event) => {
+                event.preventDefault();
+                returnFocusRef?.current?.focus();
+              }}
+            >
               <motion.div
                 className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto p-3 sm:p-6 md:items-center md:p-8"
                 initial={{ opacity: 0 }}
@@ -100,25 +110,47 @@ export function ProjectModal({
                   </div>
 
                   <div className="max-h-[calc(100svh-9rem)] overflow-y-auto">
-                    <div
-                      className={
-                        project.image.kind === "diagram"
-                          ? "relative aspect-[16/10] border-b border-border bg-[#f6f1e8] p-4 sm:p-6"
-                          : "relative aspect-[16/9] border-b border-border bg-surface-2"
-                      }
+                    <a
+                      href={withBasePath(project.image.src.src)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.name} - ${copy.projects.openImage[locale]}`}
+                      className="group block border-b border-border"
                     >
-                      <Image
-                        src={project.image.src}
-                        alt={project.image.alt[locale]}
-                        fill
-                        sizes="(min-width: 768px) 720px, 100vw"
+                      <div
                         className={
                           project.image.kind === "diagram"
-                            ? "object-contain"
-                            : "object-cover object-top"
+                            ? "relative aspect-[16/10] bg-[#f6f1e8] p-4 sm:p-6"
+                            : "relative aspect-[16/10] bg-surface-2"
                         }
-                      />
-                    </div>
+                      >
+                        <Image
+                          src={project.image.src}
+                          alt={project.image.alt[locale]}
+                          fill
+                          sizes="(min-width: 768px) 720px, 100vw"
+                          className={
+                            project.image.kind === "diagram"
+                              ? "object-contain"
+                              : "object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+                          }
+                        />
+                      </div>
+                      <div className="flex items-center justify-between gap-4 bg-surface px-4 py-2.5 text-xs text-muted">
+                        <span>
+                          {project.imageLabel?.[locale] ??
+                            copy.projects.screenshot[locale]}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 font-medium text-accent">
+                          {copy.projects.openImage[locale]}
+                          <ArrowUpRight
+                            size={13}
+                            weight="bold"
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </div>
+                    </a>
 
                     <div className="px-5 py-6 sm:px-7 sm:py-8">
                       <p className="text-lg font-medium leading-relaxed text-text">
@@ -164,6 +196,45 @@ export function ProjectModal({
                         <p className="body-copy">{c.role[locale]}</p>
                       </Block>
 
+                      {project.screenshots?.length ? (
+                        <Block title={copy.projects.gallery[locale]}>
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            {project.screenshots.map((shot) => (
+                              <figure
+                                key={shot.src.src}
+                                className="overflow-hidden rounded-xl border border-border bg-surface-2"
+                              >
+                                <a
+                                  href={withBasePath(shot.src.src)}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`${shot.caption[locale]} - ${copy.projects.openImage[locale]}`}
+                                  className="group relative block aspect-[16/10] overflow-hidden border-b border-border bg-surface-2"
+                                >
+                                  <Image
+                                    src={shot.src}
+                                    alt={shot.alt[locale]}
+                                    fill
+                                    sizes="(min-width: 768px) 340px, 100vw"
+                                    className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+                                    placeholder="blur"
+                                  />
+                                  <span
+                                    aria-hidden="true"
+                                    className="absolute right-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface/90 text-muted shadow-sm backdrop-blur"
+                                  >
+                                    <ArrowUpRight size={14} weight="bold" />
+                                  </span>
+                                </a>
+                                <figcaption className="px-3.5 py-3 text-xs leading-relaxed text-muted">
+                                  {shot.caption[locale]}
+                                </figcaption>
+                              </figure>
+                            ))}
+                          </div>
+                        </Block>
+                      ) : null}
+
                       <Block title={copy.projects.architecture[locale]}>
                         <p className="body-copy">{c.architecture[locale]}</p>
                         <div className="mt-4 overflow-x-auto rounded-xl border border-border bg-bg px-3.5 py-3 font-mono text-[11px] leading-relaxed text-muted">
@@ -171,6 +242,29 @@ export function ProjectModal({
                           <span className="mx-2 text-border-strong">/</span>
                           {flow[project.id] ?? "Cliente → API → Base de datos"}
                         </div>
+                        {project.architectureImage ? (
+                          <figure className="mt-4 overflow-hidden rounded-xl border border-border bg-[#f6f1e8]">
+                            <a
+                              href={withBasePath(project.architectureImage.src.src)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={copy.projects.openImage[locale]}
+                              className="group relative block aspect-[16/10] overflow-hidden"
+                            >
+                              <Image
+                                src={project.architectureImage.src}
+                                alt={project.architectureImage.alt[locale]}
+                                fill
+                                sizes="(min-width: 768px) 700px, 100vw"
+                                className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+                                placeholder="blur"
+                              />
+                            </a>
+                            <figcaption className="border-t border-border px-3.5 py-3 text-xs leading-relaxed text-muted">
+                              {copy.projects.diagram[locale]}
+                            </figcaption>
+                          </figure>
+                        ) : null}
                       </Block>
 
                       <Block title={copy.projects.challenges[locale]}>

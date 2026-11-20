@@ -20,7 +20,9 @@ export const site = {
   } satisfies L10n,
   cv: "/cv.pdf",
   year: "2026",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaiasdc2.github.io/Portafolio",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://isaiasdc2.github.io/Portafolio",
 };
 
 export const copy = {
@@ -33,7 +35,6 @@ export const copy = {
     menu: { es: "Abrir menú", en: "Open menu" },
     menuTitle: { es: "Menú", en: "Menu" },
     close: { es: "Cerrar menú", en: "Close menu" },
-    theme: { es: "Cambiar tema", en: "Toggle theme" },
     language: { es: "Cambiar idioma", en: "Change language" },
     home: { es: "Ir al inicio", en: "Go home" },
     navLabel: { es: "Navegación principal", en: "Main navigation" },
@@ -70,19 +71,19 @@ export const copy = {
     email: { es: "Email", en: "Email" },
     stackLabel: { es: "Stack principal", en: "Core stack" },
     stack: "Next.js · TypeScript · PostgreSQL · Supabase",
-    shotLabel: {
-      es: "HefestoTech · demo pública",
-      en: "HefestoTech · live demo",
+    worksLabel: { es: "Proyectos principales", en: "Featured projects" },
+    workHefesto: {
+      es: "React · Demo pública",
+      en: "React · Live demo",
+    },
+    workPos: {
+      es: "POS · 3 sucursales",
+      en: "POS · 3 branches",
     },
     shotAlt: {
       es: "Captura de la tienda HefestoTech con el catálogo de productos.",
       en: "Screenshot of the HefestoTech store catalog.",
     },
-    shotNote: {
-      es: "Proyecto en equipo · Práctica Profesionalizante II",
-      en: "Team project · Professional Practice II",
-    },
-    scroll: { es: "Bajar", en: "Scroll" },
   },
   sections: {
     projects: {
@@ -160,6 +161,12 @@ export const copy = {
     links: { es: "Links", en: "Links" },
     diagram: { es: "Diagrama de arquitectura", en: "Architecture diagram" },
     screenshot: { es: "Captura del proyecto", en: "Project screenshot" },
+    gallery: { es: "Capturas del sistema", en: "System screenshots" },
+    realScreenshot: { es: "Captura real", en: "Real screenshot" },
+    openImage: {
+      es: "Abrir imagen en tamaño completo",
+      en: "Open full-size image",
+    },
     team: { es: "Equipo", en: "Team" },
     personal: { es: "Personal", en: "Personal" },
   },

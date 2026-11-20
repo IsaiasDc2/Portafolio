@@ -30,7 +30,7 @@ const description =
   "Portafolio de Isaias Duran, desarrollador full stack junior en Argentina. Proyectos con Next.js, React, TypeScript, PostgreSQL y Supabase. Disponible para trabajar.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(`${site.url}/`),
   title: {
     default: title,
     template: "%s | Isaias Duran",
@@ -52,19 +52,19 @@ export const metadata: Metadata = {
   creator: site.name,
   category: "technology",
   alternates: {
-    canonical: "/",
+    canonical: `${site.url}/`,
   },
   openGraph: {
     type: "website",
     locale: "es_AR",
     alternateLocale: ["en_US"],
-    url: "/",
+    url: `${site.url}/`,
     siteName: site.name,
     title,
     description,
     images: [
       {
-        url: "/og-image.png",
+        url: `${site.url}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Isaias Duran, desarrollador full stack junior",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/og-image.png"],
+    images: [`${site.url}/og-image.png`],
   },
   robots: {
     index: true,
@@ -98,10 +98,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   colorScheme: "light",
-  themeColor: { media: "(prefers-color-scheme: light)", color: "#FAF7F2" },
+  themeColor: "#f3efe6",
 };
 
-const themeScript = `(function(){try{document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light";}catch(e){document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light";}try{var l=localStorage.getItem("locale");if(l==="es"||l==="en"){document.documentElement.lang=l;}}catch(e){}})();`;
+const localeScript = `(function(){try{var l=localStorage.getItem("locale");if(l==="es"||l==="en"){document.documentElement.lang=l;}}catch(e){}})();`;
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -143,12 +143,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      data-theme="light"
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetBrainsMono.variable}`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: localeScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

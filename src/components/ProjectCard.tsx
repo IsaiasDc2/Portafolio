@@ -16,11 +16,16 @@ export function ProjectCard({
 }: {
   project: FeaturedProject;
   index: number;
-  onOpen: () => void;
+  onOpen: (trigger: HTMLButtonElement) => void;
 }) {
   const { locale } = useLocale();
   const reversed = index % 2 === 1;
   const isDiagram = project.image.kind === "diagram";
+  const browserUrl =
+    project.browserUrl ?? (isDiagram ? "pos-multi / arquitectura" : "hefestotech.vercel.app");
+  const imageBadge =
+    project.imageLabel?.[locale] ??
+    (isDiagram ? copy.projects.diagram[locale] : copy.projects.demo[locale]);
 
   return (
     <article className="grid min-w-0 gap-7 lg:grid-cols-[1.06fr_0.94fr] lg:items-center lg:gap-14">
@@ -30,7 +35,7 @@ export function ProjectCard({
       >
         <button
           type="button"
-          onClick={onOpen}
+          onClick={(event) => onOpen(event.currentTarget)}
           className="group block w-full min-w-0 max-w-full rounded-[18px] text-left"
           aria-label={`${copy.projects.openCase[locale]}: ${project.name}`}
         >
@@ -41,14 +46,10 @@ export function ProjectCard({
                 <span className="browser-dot" />
                 <span className="browser-dot" />
               </span>
-              <span className="browser-url">
-                {isDiagram ? "pos-multi / arquitectura" : "hefestotech.vercel.app"}
-              </span>
+              <span className="browser-url">{browserUrl}</span>
               <span className="browser-live hidden shrink-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider sm:inline-flex">
                 <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-                {isDiagram
-                  ? copy.projects.diagram[locale]
-                  : copy.projects.demo[locale]}
+                {imageBadge}
               </span>
             </div>
             <div
@@ -88,7 +89,7 @@ export function ProjectCard({
         <h3 className="display-2 mt-3 text-text">
           <button
             type="button"
-            onClick={onOpen}
+            onClick={(event) => onOpen(event.currentTarget)}
             className="text-left transition-colors duration-200 hover:text-accent"
           >
             {project.name}
@@ -116,7 +117,7 @@ export function ProjectCard({
 
         <button
           type="button"
-          onClick={onOpen}
+          onClick={(event) => onOpen(event.currentTarget)}
           className="group/cta mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent transition-colors hover:text-accent-2"
         >
           {copy.projects.caseStudy[locale]}

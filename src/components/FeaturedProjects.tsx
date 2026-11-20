@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { copy } from "@/data/site";
 import { featuredProjects } from "@/data/projects";
 import type { FeaturedProject } from "@/data/types";
@@ -14,8 +14,10 @@ export function FeaturedProjects() {
   const { locale } = useLocale();
   const [active, setActive] = useState<FeaturedProject | null>(null);
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
-  const show = (project: FeaturedProject) => {
+  const show = (project: FeaturedProject, trigger: HTMLButtonElement) => {
+    triggerRef.current = trigger;
     setActive(project);
     setOpen(true);
   };
@@ -42,7 +44,7 @@ export function FeaturedProjects() {
               key={project.id}
               project={project}
               index={index}
-              onOpen={() => show(project)}
+              onOpen={(trigger) => show(project, trigger)}
             />
           ))}
         </div>
@@ -52,6 +54,7 @@ export function FeaturedProjects() {
         project={active ?? featuredProjects[0]}
         open={open && active !== null}
         onOpenChange={setOpen}
+        returnFocusRef={triggerRef}
       />
     </section>
   );

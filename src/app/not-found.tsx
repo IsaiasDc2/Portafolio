@@ -10,8 +10,6 @@ export default function NotFound() {
 
   return (
     <section className="relative flex min-h-svh items-center overflow-hidden pb-20 pt-[calc(var(--nav-height)+3rem)]">
-      <div aria-hidden="true" className="absolute inset-0 grid-bg" />
-      <div aria-hidden="true" className="absolute inset-0 ember-glow" />
       <div className="container-page relative z-10">
         <div className="mx-auto max-w-xl text-center">
           <span className="mx-auto grid h-12 w-12 place-items-center rounded-xl border border-border bg-surface text-accent">

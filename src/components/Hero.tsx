@@ -1,224 +1,200 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
+import { ArrowUpRight, DownloadSimple } from "@phosphor-icons/react";
 import { useReducedMotionSafe } from "@/lib/use-reduced-motion";
 import { withBasePath } from "@/lib/utils";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  DownloadSimple,
-  EnvelopeSimple,
-  GithubLogo,
-} from "@phosphor-icons/react";
 import hefestotechShot from "@/assets/images/hefestotech-home.webp";
 import { copy, site } from "@/data/site";
-import { EmberBackground } from "./EmberBackground";
 import { TypingRole } from "./TypingRole";
 import { useLocale } from "./Providers";
 
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.06 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
-const reducedItem = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.15 } },
-};
+const EASE = [0.23, 1, 0.32, 1] as const;
 
 export function Hero() {
   const { locale } = useLocale();
   const reduce = useReducedMotionSafe();
-  const variants = reduce ? reducedItem : item;
+  const nameRef = useRef<HTMLHeadingElement>(null);
+
+  // The pointer heats the name; the hot spot follows with inertia (lerp).
+  useEffect(() => {
+    const el = nameRef.current;
+    if (!el || reduce) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    let tx = 78;
+    let ty = 30;
+    let x = tx;
+    let y = ty;
+    let raf = 0;
+
+    const tick = () => {
+      x += (tx - x) * 0.1;
+      y += (ty - y) * 0.1;
+      el.style.setProperty("--mx", `${x}%`);
+      el.style.setProperty("--my", `${y}%`);
+      raf =
+        Math.abs(tx - x) + Math.abs(ty - y) > 0.05
+          ? requestAnimationFrame(tick)
+          : 0;
+    };
+
+    const onMove = (event: PointerEvent) => {
+      const rect = el.getBoundingClientRect();
+      tx = ((event.clientX - rect.left) / rect.width) * 100;
+      ty = ((event.clientY - rect.top) / rect.height) * 100;
+      el.style.setProperty("--heat-opacity", "1");
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, [reduce]);
+
+  const fade = (delay: number) => ({
+    initial: { opacity: 0, y: reduce ? 0 : 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: {
+      duration: reduce ? 0.15 : 0.5,
+      delay: reduce ? 0 : delay,
+      ease: EASE,
+    },
+  });
+
+  const works = [
+    {
+      n: "01",
+      name: "HefestoTech",
+      meta: copy.hero.workHefesto[locale],
+      href: "#proyectos",
+    },
+    {
+      n: "02",
+      name: "POS Multi",
+      meta: copy.hero.workPos[locale],
+      href: "#proyectos",
+    },
+  ];
 
   return (
     <section
       id="inicio"
-      className="relative flex min-h-svh items-center overflow-hidden pb-16 pt-[calc(var(--nav-height)+2.5rem)] sm:pb-20 lg:pb-24"
+      className="relative flex min-h-svh flex-col justify-end overflow-hidden pb-10 pt-[calc(var(--nav-height)+2rem)]"
     >
-      <div aria-hidden="true" className="absolute inset-0 grid-bg" />
-      <div aria-hidden="true" className="absolute inset-0 ember-glow" />
-      <EmberBackground />
-      <div aria-hidden="true" className="noise absolute inset-0" />
-
-      <div className="container-page relative z-10 grid items-center gap-12 py-8 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16 lg:py-12">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="max-w-[36rem]"
+      <div className="container-page relative z-10">
+        <motion.p
+          {...fade(0)}
+          className="mono-meta flex flex-wrap items-center gap-x-4 gap-y-1"
         >
-          <motion.div
-            variants={variants}
-            className="flex flex-wrap items-center gap-x-4 gap-y-2"
-          >
-            <span className="inline-flex items-center gap-2.5 text-sm font-medium text-text">
-              <span aria-hidden="true" className="status-dot" />
-              {copy.hero.availability[locale]}
-            </span>
-            <span aria-hidden="true" className="hidden h-4 w-px bg-border sm:block" />
-            <span className="mono-meta">{copy.hero.location[locale]}</span>
-          </motion.div>
+          <span className="inline-flex items-center gap-2 text-text">
+            <span aria-hidden="true" className="status-dot" />
+            {copy.hero.availability[locale]}
+          </span>
+          <span>{copy.hero.location[locale]}</span>
+        </motion.p>
 
-          <motion.h1 variants={variants} className="display-1 mt-6 text-text">
-            Isaias <span className="text-ember">Duran</span>
-            <span className="text-accent">.</span>
-          </motion.h1>
-
-          <motion.div
-            variants={variants}
-            className="mt-4 flex items-start gap-2.5"
-          >
-            <span
-              aria-hidden="true"
-              className="mt-0.5 font-mono text-sm text-accent"
-            >
-              &gt;
-            </span>
-            <TypingRole key={locale} />
-          </motion.div>
-
-          <motion.p variants={variants} className="lead mt-6">
-            {copy.hero.lead[locale]}
-          </motion.p>
-
-          <motion.p
-            variants={variants}
-            className="mt-4 max-w-[34rem] text-sm leading-relaxed text-muted"
-          >
-            {copy.hero.support[locale]}
-          </motion.p>
-
-          <motion.div
-            variants={variants}
-            className="mt-8 flex flex-wrap items-center gap-3"
-          >
-            <a href="#proyectos" className="btn btn-primary">
-              {copy.hero.ctaProjects[locale]}
-              <ArrowRight size={17} weight="bold" aria-hidden="true" />
-            </a>
-            <a href="#contacto" className="btn btn-secondary">
-              {copy.hero.ctaContact[locale]}
-            </a>
-            <a
-              href={withBasePath(site.cv)}
-              download
-              className="btn btn-ghost px-3"
-              aria-label={copy.hero.cv[locale]}
-            >
-              <DownloadSimple size={17} weight="bold" aria-hidden="true" />
-              <span className="sm:hidden">CV</span>
-              <span className="hidden sm:inline">{copy.hero.cv[locale]}</span>
-            </a>
-          </motion.div>
-
-          <motion.div
-            variants={variants}
-            className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5"
-          >
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 text-sm text-muted transition-colors hover:text-text"
-            >
-              <GithubLogo size={18} aria-hidden="true" />
-              {copy.hero.github[locale]}
-              <ArrowUpRight size={13} aria-hidden="true" />
-            </a>
-            <a
-              href={`mailto:${site.email}`}
-              className="inline-flex min-h-11 items-center gap-2 text-sm text-muted transition-colors hover:text-text"
-            >
-              <EnvelopeSimple size={18} aria-hidden="true" />
-              {copy.hero.email[locale]}
-            </a>
-            <span className="mono-meta ml-auto hidden text-[11px] xl:block">
-              {copy.hero.stack}
-            </span>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: reduce ? 0.15 : 0.7,
-            delay: reduce ? 0 : 0.35,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="relative mx-auto w-full max-w-[560px]"
+        <h1
+          ref={nameRef}
+          className="heat mt-6 font-display text-[clamp(4.5rem,17vw,14rem)] font-bold leading-[0.86] tracking-[-0.045em]"
         >
-          <div
-            aria-hidden="true"
-            className="absolute -inset-5 rounded-[28px] bg-accent/5 blur-2xl"
-          />
-          <a
-            href="https://hefestotech.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block rounded-[18px]"
+          <span className="mask-line">
+            <span className="name-rise" data-text="Isaias">Isaias</span>
+          </span>
+          <span className="mask-line">
+            <span className="name-rise" data-text="Duran.">Duran.</span>
+          </span>
+        </h1>
+
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+          <div className="hero-enter max-w-[34rem]">
+            <div className="flex items-start gap-2.5">
+              <span
+                aria-hidden="true"
+                className="mt-0.5 font-mono text-sm text-accent"
+              >
+                &gt;
+              </span>
+              <TypingRole key={locale} />
+            </div>
+            <p className="lead mt-5">{copy.hero.lead[locale]}</p>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <a href="#proyectos" className="btn btn-primary">
+                {copy.hero.ctaProjects[locale]}
+              </a>
+              <a href="#contacto" className="btn btn-secondary">
+                {copy.hero.ctaContact[locale]}
+              </a>
+              <a
+                href={withBasePath(site.cv)}
+                download
+                className="btn btn-ghost px-3"
+                aria-label={copy.hero.cv[locale]}
+              >
+                <DownloadSimple size={17} weight="bold" aria-hidden="true" />
+                <span>CV</span>
+              </a>
+            </div>
+          </div>
+
+          <motion.div
+            {...fade(0.7)}
+            className="grid gap-6 sm:grid-cols-[1fr_11rem] lg:items-end"
           >
-            <div className="browser-frame">
-              <div className="browser-bar" aria-hidden="true">
-                <span className="flex gap-1.5" aria-hidden="true">
-                  <span className="browser-dot" />
-                  <span className="browser-dot" />
-                  <span className="browser-dot" />
-                </span>
-                <span className="browser-url">hefestotech.vercel.app</span>
-                <span className="browser-live inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider">
-                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  Live
-                </span>
-              </div>
-              <div className="relative aspect-[16/10] overflow-hidden bg-surface-2">
+            <nav aria-label={copy.hero.worksLabel[locale]}>
+              {works.map((work) => (
+                <a key={work.n} href={work.href} className="work-row">
+                  <span className="mono-meta">{work.n}</span>
+                  <span className="font-display text-xl font-semibold">
+                    {work.name}
+                  </span>
+                  <span className="mono-meta inline-flex items-center gap-1.5">
+                    {work.meta}
+                    <ArrowUpRight
+                      className="arrow shrink-0"
+                      size={13}
+                      aria-hidden="true"
+                    />
+                  </span>
+                </a>
+              ))}
+              <div className="border-t border-border-strong" />
+            </nav>
+
+            <motion.div
+              initial={
+                reduce ? { opacity: 0 } : { clipPath: "inset(100% 0 0 0)" }
+              }
+              animate={reduce ? { opacity: 1 } : { clipPath: "inset(0% 0 0 0)" }}
+              transition={{
+                duration: reduce ? 0.15 : 0.9,
+                delay: reduce ? 0 : 0.8,
+                ease: EASE,
+              }}
+              className="hidden sm:block"
+            >
+              <a
+                href="https://hefestotech.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block aspect-[3/4] overflow-hidden border border-border-strong bg-surface-2"
+              >
                 <Image
                   src={hefestotechShot}
                   alt={copy.hero.shotAlt[locale]}
                   fill
                   priority
-                  sizes="(min-width: 1024px) 520px, (min-width: 640px) 80vw, 100vw"
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  placeholder="blur"
+                  sizes="176px"
+                  className="object-cover object-left-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
-              </div>
-            </div>
-          </a>
-
-          <div className="mt-4 flex items-start justify-between gap-4">
-            <div>
-              <p className="font-display text-sm font-semibold text-text">
-                HefestoTech
-              </p>
-              <p className="mono-meta mt-1 text-[11px]">
-                {copy.hero.shotNote[locale]}
-              </p>
-            </div>
-            <a
-              href="https://hefestotech.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${copy.hero.shotLabel[locale]} - HefestoTech`}
-              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap text-xs font-medium text-muted transition-colors hover:text-accent"
-            >
-              {copy.projects.demo[locale]}
-              <ArrowUpRight size={14} weight="bold" aria-hidden="true" />
-            </a>
-          </div>
-        </motion.div>
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

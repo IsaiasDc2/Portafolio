@@ -1,5 +1,8 @@
 import hefestotechShot from "@/assets/images/hefestotech-home.webp";
 import forjaShot from "@/assets/images/forjagym.webp";
+import posAccesoShot from "@/assets/images/pos-acceso.webp";
+import posInicioShot from "@/assets/images/pos-inicio.webp";
+import posVentaShot from "@/assets/images/pos-venta.webp";
 import posDiagram from "@/assets/images/pos-arquitectura.webp";
 import tgamxShot from "@/assets/images/tgamx.webp";
 import type { FeaturedProject, OtherProject } from "./types";
@@ -40,6 +43,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
         en: "HefestoTech home screenshot with the product catalog and PC builder.",
       },
     },
+    browserUrl: "hefestotech.vercel.app",
     links: [
       {
         kind: "demo",
@@ -186,6 +190,43 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Playwright",
     ],
     image: {
+      src: posVentaShot,
+      kind: "screenshot",
+      alt: {
+        es: "Pantalla de venta del POS: búsqueda de productos, grilla de artículos, carrito y cobro.",
+        en: "POS sale screen: product search, item grid, cart and checkout.",
+      },
+    },
+    imageLabel: {
+      es: "Captura real",
+      en: "Real screenshot",
+    },
+    browserUrl: "pos-multi / venta",
+    screenshots: [
+      {
+        src: posInicioShot,
+        alt: {
+          es: "Panel de inicio del POS con la sucursal activa, ventas del día, caja y conversaciones de WhatsApp pendientes.",
+          en: "POS home panel with the active branch, daily sales, register and pending WhatsApp conversations.",
+        },
+        caption: {
+          es: "Inicio: sucursal activa, ventas del día y caja.",
+          en: "Home: active branch, daily sales and register.",
+        },
+      },
+      {
+        src: posAccesoShot,
+        alt: {
+          es: "Pantalla de acceso del POS con email y contraseña.",
+          en: "POS sign-in screen with email and password.",
+        },
+        caption: {
+          es: "Acceso con email y contraseña.",
+          en: "Sign in with email and password.",
+        },
+      },
+    ],
+    architectureImage: {
       src: posDiagram,
       kind: "diagram",
       alt: {
@@ -283,12 +324,14 @@ export const featuredProjects: readonly FeaturedProject[] = [
           "9 verificaciones de seguridad RLS en verde.",
           "9 ADRs documentando decisiones de arquitectura.",
           "Suite con Vitest, PGlite y Playwright; pnpm check antes de cada cambio.",
+          "Capturas reales de venta, inicio y acceso incluidas en este caso.",
         ],
         en: [
           "3 branches, 30 products and 6 demo users in the seed.",
           "9 RLS security checks passing.",
           "9 ADRs documenting architecture decisions.",
           "Vitest, PGlite and Playwright suite; pnpm check before every change.",
+          "Real sale, home and sign-in screenshots included in this case study.",
         ],
       },
       improvements: {
@@ -304,8 +347,8 @@ export const featuredProjects: readonly FeaturedProject[] = [
         ],
       },
       note: {
-        es: "El código es privado. Puedo mostrar el sistema y el repositorio en una entrevista.",
-        en: "The code is private. I can show the system and the repository in an interview.",
+        es: "El código es privado. Puedo mostrar el sistema, estas capturas y el repositorio en una entrevista.",
+        en: "The code is private. I can show the system, these screenshots and the repository in an interview.",
       },
     },
   },

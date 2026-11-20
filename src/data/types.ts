@@ -28,6 +28,12 @@ export type ProjectImage = {
   kind: "screenshot" | "diagram";
 };
 
+export type ProjectScreenshot = {
+  src: StaticImageData;
+  alt: L10n;
+  caption: L10n;
+};
+
 export type FeaturedProject = {
   id: string;
   index: string;
@@ -38,6 +44,10 @@ export type FeaturedProject = {
   pitch: L10n;
   stack: readonly string[];
   image: ProjectImage;
+  imageLabel?: L10n;
+  browserUrl?: string;
+  screenshots?: readonly ProjectScreenshot[];
+  architectureImage?: ProjectImage;
   links: readonly ProjectLink[];
   caseStudy: CaseStudy;
 };

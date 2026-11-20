@@ -8,7 +8,6 @@ import { copy, site } from "@/data/site";
 import { cn, withBasePath } from "@/lib/utils";
 import { LanguageToggle } from "./LanguageToggle";
 import { Logo } from "./Logo";
-
 import { useLocale } from "./Providers";
 
 const sectionIds = [
@@ -232,7 +231,7 @@ export function Navbar() {
 
       <motion.div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-[3px] origin-left bg-[linear-gradient(to_right,var(--accent),var(--accent-2),var(--ember-300))] shadow-[0_0_12px_var(--accent-glow)]"
+        className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-accent"
         style={{ scaleX: progress }}
       />
     </header>

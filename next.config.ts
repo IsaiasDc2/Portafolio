@@ -1,25 +1,25 @@
 import type { NextConfig } from "next";
 
 const repoName = "Portafolio";
+const basePath =
+  process.env.NODE_ENV === "production" ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
-  // Generar una versión estática para GitHub Pages
+  // Static export for GitHub Pages.
   output: "export",
-
-  // Configuración para el subdirectorio de GitHub Pages
-  basePath:
-    process.env.NODE_ENV === "production"
-      ? `/${repoName}`
-      : undefined,
-
+  basePath: basePath || undefined,
   trailingSlash: true,
 
-  // Desactivar optimización de imágenes del servidor
+  // GitHub Pages cannot run the Next.js image optimizer.
   images: {
     unoptimized: true,
   },
 
-  // Conservar tu configuración de Tailwind y Turbopack
+  // Expose the prefix to plain <a href> values in the browser.
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
+
   turbopack: {
     rules: {
       "*.css": {
