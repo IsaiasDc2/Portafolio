@@ -42,6 +42,7 @@ export type FeaturedProject = {
   context: L10n;
   tagline: L10n;
   pitch: L10n;
+  roleSummary: L10n;
   stack: readonly string[];
   image: ProjectImage;
   imageLabel?: L10n;
@@ -58,6 +59,7 @@ export type OtherProject = {
   year: string;
   context: L10n;
   summary: L10n;
+  roleSummary: L10n;
   stack: readonly string[];
   image: ProjectImage;
   links: readonly ProjectLink[];

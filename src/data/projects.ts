@@ -25,6 +25,10 @@ export const featuredProjects: readonly FeaturedProject[] = [
       es: "E-commerce para Argentina: catálogo con filtros, armador con chequeo de compatibilidad, carrito, checkout con Mercado Pago y panel de administración.",
       en: "E-commerce for Argentina: filterable catalog, compatibility-checked PC builder, cart, Mercado Pago checkout and an admin panel.",
     },
+    roleSummary: {
+      es: "Frontend, checkout y asistente de IA",
+      en: "Frontend, checkout and AI assistant",
+    },
     stack: [
       "React 19",
       "Vite",
@@ -177,6 +181,10 @@ export const featuredProjects: readonly FeaturedProject[] = [
     pitch: {
       es: "Sistema para una mueblería: pedidos, caja, stock por sucursal, entregas, reportes y facturación electrónica, con permisos por rol y RLS en PostgreSQL.",
       en: "System for a furniture store: orders, cash register, stock per branch, deliveries, reports and e-invoicing, with role permissions and PostgreSQL RLS.",
+    },
+    roleSummary: {
+      es: "Arquitectura, modelo de datos e interfaz",
+      en: "Architecture, data model and interface",
     },
     stack: [
       "Next.js 16",
@@ -364,6 +372,10 @@ export const otherProjects: readonly OtherProject[] = [
       es: "Sitio de gimnasio con planes, clases, instructores y contacto. Lo armé en diez entregas: HTML y Bootstrap, después JavaScript, PHP/MySQL y al final Laravel con MVC.",
       en: "Gym site with plans, classes, instructors and contact. I built it across ten assignments: HTML and Bootstrap, then JavaScript, PHP/MySQL and finally Laravel with MVC.",
     },
+    roleSummary: {
+      es: "Desarrollo individual · full stack",
+      en: "Solo build · full stack",
+    },
     stack: ["HTML", "CSS", "Bootstrap", "JavaScript", "PHP", "MySQL", "Laravel"],
     image: {
       src: forjaShot,
@@ -394,6 +406,10 @@ export const otherProjects: readonly OtherProject[] = [
     summary: {
       es: "Tienda de teclados mecánicos con carrito, contador y lista de tareas. Práctica de React con Vite: componentes, estado y eventos.",
       en: "Mechanical keyboard store with a cart, counter and to-do list. React practice with Vite: components, state and events.",
+    },
+    roleSummary: {
+      es: "Desarrollo individual · frontend",
+      en: "Solo build · frontend",
     },
     stack: ["React", "Vite", "JavaScript", "CSS"],
     image: {

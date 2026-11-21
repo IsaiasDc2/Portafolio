@@ -102,6 +102,12 @@ export function ProjectCard({
         <p className="mt-2 max-w-[46ch] text-sm leading-relaxed text-muted">
           {project.pitch[locale]}
         </p>
+        <p className="mt-3 text-xs leading-relaxed text-muted">
+          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-text">
+            {copy.projects.role[locale]}
+          </span>{" "}
+          {project.roleSummary[locale]}
+        </p>
 
         <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Stack">
           {project.stack.map((tech) => (
