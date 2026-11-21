@@ -17,8 +17,9 @@ The tone stays first person and concrete. Copy avoids "passionate about technolo
 ## Visual language
 
 - **Paper:** `#F3EFE6` background with `#FAF7F0` cards and `#E9E3D6` secondary surfaces.
-- **Ink:** `#17140F` for text and the logo tile.
-- **Ember:** `#B93A0A` for links, labels and the primary button. `#FF5A14` is reserved for the heat spot in the hero name.
+- **Ink:** `#17140F` for text and the octagonal logo plate.
+- **Ember:** `#B93A0A` for links, labels and the primary button. `#FF5A14` marks the heat spot in the hero name and the spark in the logo.
+- **Logo:** an ink octagon with a stencil `ID` and an ember spark. It reads as a forged plate; the favicon and apple icon use the lighter inverse version.
 - **Hairlines:** 1px borders in warm gray. Shadows are subtle and only lift floating cards, frames and the modal.
 - **No texture:** the old grid, radial glow and noise layers were removed. The paper color and type carry the page.
 - **Frames:** project images sit inside a browser chrome with three dots and a URL. When the project has a real screenshot, the frame shows it and the badge says "Captura real".
