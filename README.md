@@ -95,11 +95,11 @@ Most changes do not touch components.
 
 The repository deploys from `main` with `.github/workflows/deploy.yml`.
 
-> **Required repository setting:** in **Settings → Pages → Build and deployment**, **Source** must be **GitHub Actions**. If it is set to **Deploy from a branch**, GitHub publishes the repository README with Jekyll instead of the static export, so `/Portafolio/` shows the wrong page and `/Portafolio/cv.pdf` returns 404. In that case the built-in **pages build and deployment** workflow also runs alongside **Deploy to GitHub Pages**.
+> The preferred Pages source is **GitHub Actions**. If the repository still uses **Deploy from a branch**, the workflow also mirrors `out/` into the branch root with a root `.nojekyll`, so the built-in Jekyll deployment serves the same files instead of the README. Both deployment methods therefore produce the same site.
 
 1. Push to `main`.
-2. The workflow runs `npm ci`, `npm run lint`, `npm run build` and uploads `out/`.
-3. `actions/configure-pages` enables Pages with GitHub Actions as the source.
+2. The workflow runs `npm ci`, `npm run lint` and `npm run build`.
+3. It mirrors the static export to the branch root for legacy branch deployments, then uploads `out/`.
 4. The deploy job publishes `https://isaiasdc2.github.io/Portafolio/`.
 
 `next.config.ts` sets `output: "export"`, `trailingSlash`, unoptimized images and `basePath: "/Portafolio"` for production. If the repository is renamed, update `repoName` there. `withBasePath()` prefixes plain public-folder links such as the CV; Next handles `<Link>`, `<Image>` and static imports.

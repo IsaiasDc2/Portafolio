@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: isaiasdc2.github.io
+Sitemap: https://isaiasdc2.github.io/Portafolio/sitemap.xml
