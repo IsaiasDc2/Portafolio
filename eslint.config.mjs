@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Mirrored static export used by legacy branch-based Pages deployments.
+    "_next/**",
+    "_not-found/**",
+    "404/**",
   ]),
 ]);
 
