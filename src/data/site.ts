@@ -6,8 +6,8 @@ export const site = {
   email: "isaduran644@gmail.com",
   github: "https://github.com/IsaiasDc2",
   githubHandle: "IsaiasDc2",
-  linkedin: "https://www.linkedin.com/in/isaias-duran-671347421",
-  linkedinHandle: "isaias-duran-671347421",
+  linkedin: "https://www.linkedin.com/in/isaias-duran-",
+  linkedinHandle: "isaias-duran-",
   location: {
     es: "Argentina · Remoto",
     en: "Argentina · Remote",

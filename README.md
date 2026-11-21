@@ -71,13 +71,13 @@ src/
     use-reduced-motion.ts
   assets/images/      optimized WebP screenshots, diagrams and portrait
 public/
-  cv.pdf              one-page CV
+  cv.pdf              user-provided CV served at /cv.pdf
   og-image.png        1200 × 630 social preview
   .nojekyll           keeps GitHub Pages from running Jekyll
 .github/workflows/
   deploy.yml          lint, build and deploy to Pages
 scripts/
-  cv.html             editable source for the CV
+  cv.html             legacy generator for the old CV (not used)
   source/             original images used for the WebP assets
 ```
 
@@ -89,12 +89,7 @@ Most changes do not touch components.
 - **Projects and case studies:** `src/data/projects.ts`. Keep `links` honest: use `private` or `email` for anything without a public URL.
 - **Skills and timeline:** `src/data/skills.ts` and `src/data/education.ts`.
 - **Images:** add a WebP to `src/assets/images`, import it in the data file and update the alt text in both languages. Featured cards use a 16:10 frame. The POS case study uses `image` for the main screenshot, `screenshots` for the gallery and `architectureImage` for the diagram.
-- **CV:** edit `scripts/cv.html` and regenerate `public/cv.pdf` with any Chromium browser:
-
-```bash
-chrome --headless=new --disable-gpu --no-pdf-header-footer \
-  --print-to-pdf=public/cv.pdf "file:///absolute/path/to/scripts/cv.html"
-```
+- **CV:** replace `public/cv.pdf` with the new PDF. All download links use `site.cv` (`/cv.pdf`), so no component change is needed. `scripts/cv.html` is kept only as the source for the old generated CV.
 
 ## Deploy to GitHub Pages
 
@@ -128,10 +123,10 @@ These are real gaps in the available data. They are intentionally hidden or mark
 | --- | --- | --- |
 | Custom domain | Using the GitHub Pages URL | `NEXT_PUBLIC_SITE_URL` and `src/data/site.ts` |
 | Education institution and year | Timeline says "Formación técnica · Argentina" | `src/data/education.ts` |
-| English level | "Inglés técnico", self-assessed, no certificate listed | `src/data/site.ts` and `scripts/cv.html` |
+| English level | "Inglés técnico", self-assessed, no certificate listed | `src/data/site.ts` |
 | Professional photo | Cropped from a full-body shot; a brighter headshot would work better | `src/assets/images/portrait.webp` |
 | POS demo | Repository and demo are private; the case study shows real UI screenshots and a demo is available on interview | `src/data/projects.ts` if a public demo is deployed |
-| English CV | `public/cv.pdf` is Spanish only | `scripts/cv.html` plus a second PDF |
+| English CV | `public/cv.pdf` is the user's Spanish CV | Replace `public/cv.pdf` with a second PDF |
 
 The POS Multi-Sucursal case study uses three real screenshots (sale, home and sign-in) plus its architecture diagram. Forja Gym and Tgamx link to their public demos and repositories.
 
@@ -139,6 +134,6 @@ The POS Multi-Sucursal case study uses three real screenshots (sale, home and si
 
 - Email: [isaduran644@gmail.com](mailto:isaduran644@gmail.com)
 - GitHub: [github.com/IsaiasDc2](https://github.com/IsaiasDc2)
-- LinkedIn: [linkedin.com/in/isaias-duran-671347421](https://www.linkedin.com/in/isaias-duran-671347421)
+- LinkedIn: [linkedin.com/in/isaias-duran-](https://www.linkedin.com/in/isaias-duran-)
 
 The copy, images, CV and project case studies belong to Isaias Duran.
