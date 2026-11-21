@@ -5,6 +5,7 @@ import {
   Clock,
   EnvelopeSimple,
   GithubLogo,
+  LinkedinLogo,
   MapPin,
 } from "@phosphor-icons/react";
 import { copy, site } from "@/data/site";
@@ -29,6 +30,13 @@ export function Contact() {
       label: copy.contact.githubLabel[locale],
       value: `github.com/${site.githubHandle}`,
       href: site.github,
+      external: true,
+    },
+    {
+      icon: LinkedinLogo,
+      label: copy.contact.linkedinLabel[locale],
+      value: `linkedin.com/in/${site.linkedinHandle}`,
+      href: site.linkedin,
       external: true,
     },
     {

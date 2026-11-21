@@ -6,6 +6,8 @@ export const site = {
   email: "isaduran644@gmail.com",
   github: "https://github.com/IsaiasDc2",
   githubHandle: "IsaiasDc2",
+  linkedin: "https://www.linkedin.com/in/isaias-duran-671347421",
+  linkedinHandle: "isaias-duran-671347421",
   location: {
     es: "Argentina · Remoto",
     en: "Argentina · Remote",
@@ -241,6 +243,7 @@ export const copy = {
     },
     emailLabel: { es: "Email", en: "Email" },
     githubLabel: { es: "GitHub", en: "GitHub" },
+    linkedinLabel: { es: "LinkedIn", en: "LinkedIn" },
     locationLabel: { es: "Ubicación", en: "Location" },
     location: { es: "Argentina · Remoto", en: "Argentina · Remote" },
     availabilityLabel: { es: "Disponibilidad", en: "Availability" },

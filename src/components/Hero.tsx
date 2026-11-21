@@ -91,8 +91,7 @@ export function Hero() {
           {...fade(0)}
           className="mono-meta flex flex-wrap items-center gap-x-4 gap-y-1"
         >
-          <span className="inline-flex items-center gap-2 text-text">
-            <span aria-hidden="true" className="status-dot" />
+          <span className="text-text">
             {copy.hero.availability[locale]}
           </span>
           <span>{copy.hero.location[locale]}</span>

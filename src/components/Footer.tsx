@@ -5,6 +5,7 @@ import {
   DownloadSimple,
   EnvelopeSimple,
   GithubLogo,
+  LinkedinLogo,
 } from "@phosphor-icons/react";
 import { copy, site } from "@/data/site";
 import { withBasePath } from "@/lib/utils";
@@ -80,6 +81,17 @@ export function Footer() {
                 >
                   <GithubLogo size={15} aria-hidden="true" />
                   github.com/{site.githubHandle}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-text"
+                >
+                  <LinkedinLogo size={15} aria-hidden="true" />
+                  linkedin.com/in/{site.linkedinHandle}
                 </a>
               </li>
               <li>

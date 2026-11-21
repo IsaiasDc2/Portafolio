@@ -115,7 +115,7 @@ const personJsonLd = {
     "@type": "PostalAddress",
     addressCountry: "AR",
   },
-  sameAs: [site.github],
+  sameAs: [site.github, site.linkedin],
   knowsAbout: [
     "React",
     "Next.js",

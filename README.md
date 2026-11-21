@@ -127,7 +127,6 @@ These are real gaps in the available data. They are intentionally hidden or mark
 | Item | Current state | Where to update |
 | --- | --- | --- |
 | Custom domain | Using the GitHub Pages URL | `NEXT_PUBLIC_SITE_URL` and `src/data/site.ts` |
-| LinkedIn | Not shown because the real profile URL is unknown | Add the URL to `src/data/site.ts`, then render it in `Contact` |
 | Education institution and year | Timeline says "Formación técnica · Argentina" | `src/data/education.ts` |
 | English level | "Inglés técnico", self-assessed, no certificate listed | `src/data/site.ts` and `scripts/cv.html` |
 | Professional photo | Cropped from a full-body shot; a brighter headshot would work better | `src/assets/images/portrait.webp` |
@@ -140,5 +139,6 @@ The POS Multi-Sucursal case study uses three real screenshots (sale, home and si
 
 - Email: [isaduran644@gmail.com](mailto:isaduran644@gmail.com)
 - GitHub: [github.com/IsaiasDc2](https://github.com/IsaiasDc2)
+- LinkedIn: [linkedin.com/in/isaias-duran-671347421](https://www.linkedin.com/in/isaias-duran-671347421)
 
 The copy, images, CV and project case studies belong to Isaias Duran.
